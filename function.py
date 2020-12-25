@@ -4,7 +4,7 @@ from twilio.rest import Client
 from dateutil.parser import parse
 import matplotlib.pyplot as plt
 def main():
-    country = "Germany"
+    country = "germany"
     today = datetime.now().date()
     week_ago = today - timedelta(days=14)
     print("Getting COVID data")
@@ -14,12 +14,13 @@ def main():
     percentage_increase = (latest_day['Cases'] - earliest_day['Cases']) / (earliest_day['Cases'] / 100)
     msg = f"There were {latest_day['Cases']} confirmed COVID cases in {country} " \
           f"on {parse(latest_day['Date']).date()}\n"
-    if percentage_increase > 0:
-        msg += f"This is {round(abs(percentage_increase), 4)}% increase over the last week. " \
-               f"Travel is not recommended."
+    if percentage_increase > 0.0:
+        msg += f"This is *{round(abs(percentage_increase), 2)}%* increase over the last week. " \
+               f"\nTravel is not recommended ✈️ ❌"
+        msg += "\n*Stay Inside and stay safe*"
     else:
-        msg += f"This is {round(abs(percentage_increase), 4)}% decrease over the last week. " \
-               f"Travel may be OK."
+        msg += f"This is *{round(abs(percentage_increase), 2)}%* decrease over the last week. " \
+               f"Travel may be OK ✈️ ✅"
     print("Sending Whatsapp message")
     send_whatsapp_message(msg)
     print("Job finished successfully")
