@@ -31,10 +31,10 @@ def get_country_confirmed_infected(country, start_date, end_date):
     return resp.json()
 
 def send_whatsapp_message(msg):
-    account_sid = 'ACe617da3179feef207c28e3fb324ae46b'
-    auth_token = 'efe2ebb7e4b2071a86e36261f98513ed'
+    account_sid = '<YOUR_OWN_TWILIO_SID>'
+    auth_token = '<YOUR_OWN_TWILIO_AUTH_TOKEN'
     Client(account_sid, auth_token).messages.create(
         from_='whatsapp:+14155238886',
-        to='whatsapp:+4915733774107',
+        to='whatsapp:<YOUR_MOBILE_NUMBER>',
         body=msg
     )
